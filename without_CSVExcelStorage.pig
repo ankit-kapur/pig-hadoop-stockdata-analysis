@@ -12,7 +12,7 @@ filtered_data = FILTER raw_data BY date neq 'Date';
 processed_data = FOREACH filtered_data generate ankit.GetYearMonthStock(filename, date) as identifier, date, adjClose;
 
 C = GROUP processed_data BY identifier;
-D = foreach C generate group, MIN(date), MAX(date);
+D = FOREACH C generate group as identifier, MIN(processed_data.date) as mindate, MAX(processed_data.date) as maxdate;
 
 ------ Store the results
 store D into 'out_folder';  -- write the results to a directory

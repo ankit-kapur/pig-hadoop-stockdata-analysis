@@ -1,15 +1,18 @@
 Pig Stack Trace
 ---------------
 ERROR 6000: 
-<file without_CSVExcelStorage.pig, line 21, column 0> Output Location Validation Failed for: 'file:///home/ankitkap/dic/hw3/experiments/out_folder More info to follow:
+<file without_CSVExcelStorage.pig, line 18, column 0> Output Location Validation Failed for: 'file:///home/ankitkap/dic/hw3/experiments/out_folder More info to follow:
 Output directory file:/home/ankitkap/dic/hw3/experiments/out_folder already exists
 
 org.apache.pig.impl.plan.VisitorException: ERROR 6000: 
-<file without_CSVExcelStorage.pig, line 21, column 0> Output Location Validation Failed for: 'file:///home/ankitkap/dic/hw3/experiments/out_folder More info to follow:
+<file without_CSVExcelStorage.pig, line 18, column 0> Output Location Validation Failed for: 'file:///home/ankitkap/dic/hw3/experiments/out_folder More info to follow:
 Output directory file:/home/ankitkap/dic/hw3/experiments/out_folder already exists
 	at org.apache.pig.newplan.logical.rules.InputOutputFileValidator$InputOutputFileVisitor.visit(InputOutputFileValidator.java:95)
 	at org.apache.pig.newplan.logical.relational.LOStore.accept(LOStore.java:66)
 	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:64)
+	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:66)
+	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:66)
+	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:66)
 	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:66)
 	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:66)
 	at org.apache.pig.newplan.DepthFirstWalker.depthFirst(DepthFirstWalker.java:66)
@@ -31,5 +34,5 @@ Output directory file:/home/ankitkap/dic/hw3/experiments/out_folder already exis
 Caused by: org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory file:/home/ankitkap/dic/hw3/experiments/out_folder already exists
 	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:134)
 	at org.apache.pig.newplan.logical.rules.InputOutputFileValidator$InputOutputFileVisitor.visit(InputOutputFileValidator.java:80)
-	... 20 more
+	... 23 more
 ================================================================================
