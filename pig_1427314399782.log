@@ -1,0 +1,30 @@
+Pig Stack Trace
+---------------
+ERROR 1025: 
+<file without_CSVExcelStorage.pig, line 9, column 35> Invalid field projection. Projected field [data] does not exist in schema: filename:chararray,date:chararray,dontcare1:bytearray,dontcare2:bytearray,dontcare3:bytearray,dontcare4:bytearray,dontcare5:bytearray,adjClose:chararray.
+
+org.apache.pig.impl.plan.PlanValidationException: ERROR 1025: 
+<file without_CSVExcelStorage.pig, line 9, column 35> Invalid field projection. Projected field [data] does not exist in schema: filename:chararray,date:chararray,dontcare1:bytearray,dontcare2:bytearray,dontcare3:bytearray,dontcare4:bytearray,dontcare5:bytearray,adjClose:chararray.
+	at org.apache.pig.newplan.logical.expression.ProjectExpression.findColNum(ProjectExpression.java:191)
+	at org.apache.pig.newplan.logical.expression.ProjectExpression.setColumnNumberFromAlias(ProjectExpression.java:174)
+	at org.apache.pig.newplan.logical.visitor.ColumnAliasConversionVisitor$1.visit(ColumnAliasConversionVisitor.java:53)
+	at org.apache.pig.newplan.logical.expression.ProjectExpression.accept(ProjectExpression.java:215)
+	at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)
+	at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:52)
+	at org.apache.pig.newplan.logical.optimizer.AllExpressionVisitor.visit(AllExpressionVisitor.java:80)
+	at org.apache.pig.newplan.logical.relational.LOFilter.accept(LOFilter.java:79)
+	at org.apache.pig.newplan.DependencyOrderWalker.walk(DependencyOrderWalker.java:75)
+	at org.apache.pig.newplan.PlanVisitor.visit(PlanVisitor.java:52)
+	at org.apache.pig.PigServer$Graph.compile(PigServer.java:1716)
+	at org.apache.pig.PigServer$Graph.compile(PigServer.java:1708)
+	at org.apache.pig.PigServer$Graph.access$200(PigServer.java:1409)
+	at org.apache.pig.PigServer.execute(PigServer.java:1289)
+	at org.apache.pig.PigServer.executeBatch(PigServer.java:375)
+	at org.apache.pig.PigServer.executeBatch(PigServer.java:353)
+	at org.apache.pig.tools.grunt.GruntParser.executeBatch(GruntParser.java:140)
+	at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:202)
+	at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:173)
+	at org.apache.pig.tools.grunt.Grunt.exec(Grunt.java:84)
+	at org.apache.pig.Main.run(Main.java:607)
+	at org.apache.pig.Main.main(Main.java:156)
+================================================================================
