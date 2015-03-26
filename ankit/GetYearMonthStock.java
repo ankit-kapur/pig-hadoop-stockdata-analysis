@@ -20,7 +20,7 @@ public class GetYearMonthStock extends EvalFunc<String> {
 			stockName = stockName.substring(0, stockName.indexOf("."));
 
 			/* Extract year-month from the date string */
-			yearMonthStock = stockName + "-"
+			yearMonthStock = stockName + "$"
 					+ dateString.substring(0, dateString.lastIndexOf('-'));
 
 		} catch (Exception e) {
