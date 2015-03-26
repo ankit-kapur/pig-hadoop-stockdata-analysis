@@ -6,7 +6,6 @@ import java.util.Iterator;
 import org.apache.pig.EvalFunc;
 import org.apache.pig.data.DataBag;
 import org.apache.pig.data.DataByteArray;
-import org.apache.pig.data.DataType;
 import org.apache.pig.data.Tuple;
 
 public class CalculateVolatility extends EvalFunc<Double> {
@@ -18,9 +17,6 @@ public class CalculateVolatility extends EvalFunc<Double> {
 		long N = 36;
 		
 		try {
-			for (int i=0; i < tuple.size(); i++)
-				System.out.println("\n Field " + i + " => " + DataType.findTypeName(tuple.getType(i)) + " => " + tuple.get(i));
-			
 			/* Get the xiData, N, and xBar */
 			DataBag xiDataBag = (DataBag) tuple.get(0);
 			DataBag NBag = (DataBag) tuple.get(1);
@@ -37,9 +33,6 @@ public class CalculateVolatility extends EvalFunc<Double> {
 			double summation = 0.0;
 			for (Iterator<Tuple> iter = xiData.iterator(); iter.hasNext();) {
 				Tuple tuple1 = iter.next();
-				
-				for (int i=0; i < tuple1.size(); i++)
-					System.out.println("\n xiData " + i + " => " + DataType.findTypeName(tuple1.getType(i)) + " => " + tuple1.get(i));
 				
 				DataByteArray xiVal = (DataByteArray) tuple1.get(2);
 				double xi = Double.parseDouble(new String(xiVal.get()));
