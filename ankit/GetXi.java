@@ -13,8 +13,8 @@ public class GetXi extends EvalFunc<Tuple> {
 	@Override
 	public Tuple exec(Tuple tuple) throws IOException {
 		double xMin = 0.0, xMax = 0.0, xi = 0.0;
-		String id = "", date = "";
-		Tuple outputTuple = TupleFactory.getInstance().newTuple(3);
+		String id = "", xMinString = "";
+		Tuple outputTuple = null;
 		
 		try {
 			/* Get stock name and date string*/
@@ -25,8 +25,8 @@ public class GetXi extends EvalFunc<Tuple> {
 			for (Iterator<Tuple> iter = minDataObj.iterator(); iter.hasNext();) {
 				Tuple tuple1 = iter.next();
 				id = (String) tuple1.get(0);
-				date = (String) tuple1.get(1);
-				xMin = Double.parseDouble((String) tuple1.get(2));
+				xMinString = (String) tuple1.get(2);
+				xMin = Double.parseDouble(xMinString);
 			}
 			
 			/* x value of last day */
@@ -39,9 +39,11 @@ public class GetXi extends EvalFunc<Tuple> {
 			xi = (xMax - xMin)/xMin;
 			
 			/* Create tuple */
+			outputTuple = TupleFactory.getInstance().newTuple(5);
 			outputTuple.set(0, id);
-			outputTuple.set(1, date);
-			outputTuple.set(2, Double.toString(xi));
+			outputTuple.set(1, "min=" + xMinString + " => " + Double.toString(xMin));
+			outputTuple.set(2, "max=" + Double.toString(xMax));
+			outputTuple.set(3, Double.toString(xi));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

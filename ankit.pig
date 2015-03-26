@@ -30,9 +30,10 @@ max_joined_data = FOREACH max_joiner GENERATE $0 as identifier, $4 as date, $5 a
 
 ------- Combine the min and max dates
 combined = COGROUP min_joined_data BY $0, max_joined_data BY $0;
-combined = FOREACH combined GENERATE FLATTEN(ankit.GetXi($1,$2));
- 
-store combined into 'out';
+store combined into 'out1';
+
+combined = FOREACH combined GENERATE FLATTEN(ankit.GetXi($1,$2)); 
+store combined into 'out2';
 
 ------ Store the results
 --store joined_data into 'out_folder';  -- write the results to a directory
