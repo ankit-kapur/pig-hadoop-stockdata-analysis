@@ -28,10 +28,13 @@ processed_data BY (identifier, date);
 
 max_joined_data = FOREACH max_joiner GENERATE $0 as identifier, $4 as date, $5 as adjClose;
 
+store min_joined_data into 'out_min';
+store max_joined_data into 'out_max';
+
 ------- Combine the min and max dates
+--combined = UNION min_joined_data, max_joined_data;
 combined = COGROUP min_joined_data BY $0, max_joined_data BY $0;
-combined = FOREACH combined GENERATE FLATTEN(ankit.GetXi($1,$2));
- 
+
 store combined into 'out';
 
 ------ Store the results
