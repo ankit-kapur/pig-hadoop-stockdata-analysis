@@ -27,14 +27,22 @@ combined = COGROUP min_joined_data BY $0, max_joined_data BY $0;
 ------- Generate Xi
 with_xi = FOREACH combined GENERATE FLATTEN(ankit.GetXi($1,$2));
 
-------- Calculate sum of all xi for each stock
+------- Calculate x_bar
 grouped_stocks = GROUP with_xi BY $0;
 x_bar = FOREACH grouped_stocks {
 		summation = SUM(with_xi.$2);
-		N = COUNT(with_xi.$2);
-		GENERATE group as stock_name, summation, N, (FLOAT)(summation/N) as xbar;
+		count = COUNT(with_xi.$2);
+		GENERATE group as stock_name, count as N, (FLOAT)(summation/count) as xbar;
+	}
+
+joint = JOIN grouped_stocks BY (group), x_bar by stock_name;
+grouped_data = GROUP joint BY $0;
+
+------- Get the volatility!
+volatility = FOREACH grouped_data {
+		--x_bar_this_stock = FILTER x_bar BY (stock_name eq group);
+		GENERATE group as stock_name, ankit.CalculateVolatility(joint.$1, joint.N, joint.xbar);  ---Send the xi data, N, and xbar
 	}
 
 ------ Store the results
-store grouped_stocks into 'out1';  -- write the results to a directory
-store x_bar into 'out2';
+store volatility into 'output_folder';

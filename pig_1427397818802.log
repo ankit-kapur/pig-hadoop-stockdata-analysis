@@ -1,0 +1,40 @@
+Pig Stack Trace
+---------------
+ERROR 1200: Pig script failed to parse: 
+<file ankit.pig, line 39, column 28> expression is not a project expression: (Name: ScalarExpression) Type: null Uid: null)
+
+org.apache.pig.impl.logicalLayer.FrontendException: ERROR 1000: Error during parsing. Pig script failed to parse: 
+<file ankit.pig, line 39, column 28> expression is not a project expression: (Name: ScalarExpression) Type: null Uid: null)
+	at org.apache.pig.PigServer$Graph.parseQuery(PigServer.java:1689)
+	at org.apache.pig.PigServer$Graph.access$000(PigServer.java:1409)
+	at org.apache.pig.PigServer.parseAndBuild(PigServer.java:342)
+	at org.apache.pig.PigServer.executeBatch(PigServer.java:367)
+	at org.apache.pig.PigServer.executeBatch(PigServer.java:353)
+	at org.apache.pig.tools.grunt.GruntParser.executeBatch(GruntParser.java:140)
+	at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:202)
+	at org.apache.pig.tools.grunt.GruntParser.parseStopOnError(GruntParser.java:173)
+	at org.apache.pig.tools.grunt.Grunt.exec(Grunt.java:84)
+	at org.apache.pig.Main.run(Main.java:607)
+	at org.apache.pig.Main.main(Main.java:156)
+Caused by: Failed to parse: Pig script failed to parse: 
+<file ankit.pig, line 39, column 28> expression is not a project expression: (Name: ScalarExpression) Type: null Uid: null)
+	at org.apache.pig.parser.QueryParserDriver.parse(QueryParserDriver.java:196)
+	at org.apache.pig.PigServer$Graph.parseQuery(PigServer.java:1676)
+	... 10 more
+Caused by: 
+<file ankit.pig, line 39, column 28> expression is not a project expression: (Name: ScalarExpression) Type: null Uid: null)
+	at org.apache.pig.parser.LogicalPlanBuilder.buildNestedOperatorInput(LogicalPlanBuilder.java:1104)
+	at org.apache.pig.parser.LogicalPlanGenerator.nested_op_input(LogicalPlanGenerator.java:17639)
+	at org.apache.pig.parser.LogicalPlanGenerator.nested_filter(LogicalPlanGenerator.java:16740)
+	at org.apache.pig.parser.LogicalPlanGenerator.nested_op(LogicalPlanGenerator.java:16391)
+	at org.apache.pig.parser.LogicalPlanGenerator.nested_command(LogicalPlanGenerator.java:16174)
+	at org.apache.pig.parser.LogicalPlanGenerator.nested_blk(LogicalPlanGenerator.java:16032)
+	at org.apache.pig.parser.LogicalPlanGenerator.foreach_plan(LogicalPlanGenerator.java:15940)
+	at org.apache.pig.parser.LogicalPlanGenerator.foreach_clause(LogicalPlanGenerator.java:15765)
+	at org.apache.pig.parser.LogicalPlanGenerator.op_clause(LogicalPlanGenerator.java:1844)
+	at org.apache.pig.parser.LogicalPlanGenerator.general_statement(LogicalPlanGenerator.java:1013)
+	at org.apache.pig.parser.LogicalPlanGenerator.statement(LogicalPlanGenerator.java:553)
+	at org.apache.pig.parser.LogicalPlanGenerator.query(LogicalPlanGenerator.java:421)
+	at org.apache.pig.parser.QueryParserDriver.parse(QueryParserDriver.java:188)
+	... 11 more
+================================================================================
