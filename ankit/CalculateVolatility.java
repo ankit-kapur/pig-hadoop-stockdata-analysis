@@ -40,7 +40,8 @@ public class CalculateVolatility extends EvalFunc<Double> {
 				summation += Math.pow((xi - xBar), 2.0);
 			}
 			
-			volatility = Math.sqrt(summation/(N-1));
+			if (N-1 > 0)
+				volatility = Math.sqrt(summation/(N-1));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
