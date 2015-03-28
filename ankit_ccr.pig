@@ -2,7 +2,7 @@ REGISTER piggybank.jar;
 REGISTER udf_ankit.jar;
 
 ------- Load the raw data
-raw_data = LOAD 'veryverysmall/' USING PigStorage(',','-tagFile');
+raw_data = LOAD 'hdfs:///pigdata/' USING PigStorage(',','-tagFile');
 
 raw_data = FOREACH raw_data GENERATE $0 as filename, $1 as date, (DOUBLE)$7 as adjClose;
 
@@ -53,9 +53,9 @@ top10 = LIMIT sorted_vol 10;
 sorted_vol = ORDER volatility BY vol DESC;
 bottom10 = LIMIT sorted_vol 10;
 
-X = UNION top10, bottom10;
-Y = GROUP X BY 1;
-result = FOREACH Y GENERATE FLATTEN(X);
+result = UNION top10, bottom10;
+--Y = GROUP X BY 1;
+--result = FOREACH Y GENERATE FLATTEN(result);
 
 ------ Store the results
-STORE result INTO 'out_folder';
+STORE result INTO 'hdfs:///pigdata/out_folder';
